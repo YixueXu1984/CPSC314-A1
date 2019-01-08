@@ -68,7 +68,7 @@ floor.parent = worldFrame;
 /////////////////////////////////
 
 // UNIFORMS
-var bunnyPosition = {type: 'v3', value: new THREE.Vector3(10.0,-0.7,0.0)};
+var bunnyPosition = {type: 'v3', value: new THREE.Vector3(0.0,0.0,0.0)};
 
 // MATERIALS: specifying uniforms and shaders
 var bunnyMaterial = new THREE.ShaderMaterial({

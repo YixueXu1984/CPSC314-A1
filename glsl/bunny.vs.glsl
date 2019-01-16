@@ -11,10 +11,11 @@ out vec3 interpolatedNormal;
 void main() {
     // Set shared variable to vertex normal
     interpolatedNormal = normal;
+    vec4 bPos = modelMatrix * vec4(position, 1.0);
 
     // HINT: USE bunnyPosition HERE
-    vec3 bunnyPos = position + bunnyPosition;
+    vec4 bunnyPos = bPos + vec4(bunnyPosition,1.0);
 
     // Multiply each vertex by the model matrix to get the world position of each vertex, then the view matrix to get the position in the camera coordinate system, and finally the projection matrix to get final vertex position
-    gl_Position = projectionMatrix * viewMatrix * modelMatrix * vec4(bunnyPos, 1.0);
-}
+    gl_Position = projectionMatrix * viewMatrix * bunnyPos;
+ }

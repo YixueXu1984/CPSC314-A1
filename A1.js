@@ -132,7 +132,8 @@ function loadOBJ(file, material, scale, xOff, yOff, zOff, xRot, yRot, zRot) {
   }, onProgress, onError);
 }
 
-loadOBJ('obj/bunny.obj', bunnyMaterial, 20, 0,-0.7,0, 0,0,0);
+loadOBJ('obj/bunny.obj', bunnyMaterial, 40, 0,-0.7,0, 0,0,0);
+
 
 // CREATE EGG
 var eggGeometry = new THREE.SphereGeometry(1, 32, 32);
@@ -146,22 +147,28 @@ scene.add(egg);
 var keyboard = new THREEx.KeyboardState();
 function checkKeyboard() {
   if (keyboard.pressed("W"))
-    bunnyPosition.value.z -= 0.01;
+    bunnyPosition.value.z -= 0.1;
   else if (keyboard.pressed("S"))
-    bunnyPosition.value.z += 0.01;
+    bunnyPosition.value.z += 0.1;
 
   if (keyboard.pressed("A"))
-    bunnyPosition.value.x -= 0.01;
+    bunnyPosition.value.x -= 0.1;
   else if (keyboard.pressed("D"))
-    bunnyPosition.value.x += 0.01;
+    bunnyPosition.value.x += 0.1;
 
   if (keyboard.pressed("X")){
       var eggGeometry = new THREE.SphereGeometry(1, 32, 32);
       var egg = new THREE.Mesh(eggGeometry, eggMaterial);
-      egg.position.set(bunnyPosition.value.x *20, bunnyPosition.value.y * 20, bunnyPosition.value.z *20);
+      egg.position.set(bunnyPosition.value.x , bunnyPosition.value.y + 0.3, bunnyPosition.value.z);
       egg.scale.set(0.3, 0.4, 0.3);
       egg.parent = worldFrame;
       scene.add(egg);
+  }
+  else if (keyboard.pressed("C")) {
+    if(bunnyPosition.value.y <=0) {
+        bunnyPosition.value.y +=0.01;
+    }
+    else bunnyPosition.value.y -=0.01;
   }
 
   bunnyMaterial.needsUpdate = true; // Tells three.js that some uniforms might have changed

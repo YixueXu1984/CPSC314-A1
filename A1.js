@@ -69,13 +69,17 @@ floor.parent = worldFrame;
 
 // UNIFORMS
 var bunnyPosition = {type: 'v3', value: new THREE.Vector3(0.0,0.0,0.0)};
+//TODO: uncomment this when started part3
+// var bunnyHight = {type:"v3", value: new THREE.Vector3(0.0,0.0, 0.0)};
 
 // MATERIALS: specifying uniforms and shaders
 var bunnyMaterial = new THREE.ShaderMaterial({
   uniforms: { bunnyPosition: bunnyPosition,
   }
 });
-var eggMaterial = new THREE.ShaderMaterial();
+var eggMaterial = new THREE.ShaderMaterial({
+    uniforms: { bunnyPosition: bunnyPosition,
+    }});
 
 // LOAD SHADERS
 var shaderFiles = [
@@ -157,19 +161,24 @@ function checkKeyboard() {
     bunnyPosition.value.x += 0.1;
 
   if (keyboard.pressed("X")){
+    let eggPosx = bunnyPosition.value.x;
+    let eggPosz = bunnyPosition.value.z;
       var eggGeometry = new THREE.SphereGeometry(1, 32, 32);
       var egg = new THREE.Mesh(eggGeometry, eggMaterial);
-      egg.position.set(bunnyPosition.value.x , 0.3, bunnyPosition.value.z);
+      egg.position.set(eggPosx, 0.3, eggPosz);
       egg.scale.set(0.3, 0.4, 0.3);
       egg.parent = worldFrame;
       scene.add(egg);
   }
-  else if (keyboard.pressed("C")) {
-    if(bunnyPosition.value.y <=0) {
-        bunnyPosition.value.y +=0.01;
-    }
-    else bunnyPosition.value.y -=0.01;
-  }
+  // else if (keyboard.pressed("C")) {
+  //   if(bunnyHight.value.z <5) {
+  //       bunnyHight.value.y +=0.1;
+  //       bunnyHight.value.z
+  //   }
+  //   else if (bunnyHight.value.y < 10 && bunnyHight.value.y >=5) {
+  //     bunnyHight.value.y -=0.1;
+  //   }
+  // }
 
   bunnyMaterial.needsUpdate = true; // Tells three.js that some uniforms might have changed
   eggMaterial.needsUpdate = true;

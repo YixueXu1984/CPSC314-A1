@@ -11,11 +11,12 @@ in vec3 eggP;
 void main() {
 
   // HINT: YOU WILL NEED TO SET YOUR OWN DISTANCE THRESHOLD
-    float dist = distance(bunnyPosition, eggP);
 
-  if (dist<=0.01) {
-  out_FragColor = vec4(0.0,0.0,0.0, 1.0);
+    float dist = distance(eggP, bunnyPosition);
+
+  if (dist>5.0) {
+  out_FragColor = vec4(0.0,0.0,0.0, 1.0); //black
   } else{
-  out_FragColor = vec4(1.0,1.0,1.0, 1.0);
+  out_FragColor = vec4(1.0,1.0,1.0, 1.0); //white
   }
 }

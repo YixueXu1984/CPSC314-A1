@@ -68,7 +68,7 @@ floor.parent = worldFrame;
 /////////////////////////////////
 
 // UNIFORMS
-var bunnyPosition = {type: 'v3', value: new THREE.Vector3(100.0,0.0,0.0)};
+var bunnyPosition = {type: 'v3', value: new THREE.Vector3(0.0,0.0,0.0)};
 
 // MATERIALS: specifying uniforms and shaders
 var bunnyMaterial = new THREE.ShaderMaterial({
@@ -132,7 +132,7 @@ function loadOBJ(file, material, scale, xOff, yOff, zOff, xRot, yRot, zRot) {
   }, onProgress, onError);
 }
 
-loadOBJ('obj/bunny.obj', bunnyMaterial, 20, 0,-0.7,0, 0,0,0);
+loadOBJ('obj/bunny.obj', bunnyMaterial, 40, 0,-0.7,0, 0,0,0);
 
 // CREATE EGG
 var eggGeometry = new THREE.SphereGeometry(1, 32, 32);

@@ -9,5 +9,5 @@ in vec3 interpolatedNormal;
 
 void main() {
   // Set final rendered color to red
-  out_FragColor = vec4(1.0, 0.0, 0.0, 1.0); // REPLACE ME
+  out_FragColor = vec4(interpolatedNormal, 1.0); // REPLACE ME
 }

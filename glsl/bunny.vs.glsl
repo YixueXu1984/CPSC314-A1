@@ -13,7 +13,6 @@ void main() {
     interpolatedNormal = normal;
 
     // HINT: USE bunnyPosition HERE
-    color = position;
     vec3 bunnyPos = position + bunnyPosition;
 
     // Multiply each vertex by the model matrix to get the world position of each vertex, then the view matrix to get the position in the camera coordinate system, and finally the projection matrix to get final vertex position

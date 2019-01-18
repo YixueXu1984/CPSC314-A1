@@ -70,11 +70,11 @@ floor.parent = worldFrame;
 // UNIFORMS
 var bunnyPosition = {type: 'v3', value: new THREE.Vector3(0.0,0.0,0.0)};
 //TODO: uncomment this when started part3
-// var bunnyHight = {type:"v3", value: new THREE.Vector3(0.0,0.0, 0.0)};
+ var bunnyHight = {type:"v3", value: new THREE.Vector3(0.0,0.0, 1.0)};
 
 // MATERIALS: specifying uniforms and shaders
 var bunnyMaterial = new THREE.ShaderMaterial({
-  uniforms: { bunnyPosition: bunnyPosition,
+  uniforms: { bunnyPosition: bunnyPosition, bunnyHight: bunnyHight,
   }
 });
 var eggMaterial = new THREE.ShaderMaterial({
@@ -147,6 +147,8 @@ egg.scale.set(0.3, 0.4, 0.3);
 egg.parent = worldFrame;
 scene.add(egg);
 
+let jumpDir = 0.01;
+
 // LISTEN TO KEYBOARD
 var keyboard = new THREEx.KeyboardState();
 function checkKeyboard() {
@@ -170,15 +172,21 @@ function checkKeyboard() {
       egg.parent = worldFrame;
       scene.add(egg);
   }
-  // else if (keyboard.pressed("C")) {
-  //   if(bunnyHight.value.z <5) {
-  //       bunnyHight.value.y +=0.1;
-  //       bunnyHight.value.z
-  //   }
-  //   else if (bunnyHight.value.y < 10 && bunnyHight.value.y >=5) {
-  //     bunnyHight.value.y -=0.1;
-  //   }
-  // }
+  if (keyboard.pressed("Z")) {
+    // if (bunnyHight.value.y = 2.0){
+    //     jumpDir = -0.01;
+    // }
+    // else if (bunnyHight.value.y = 0.0) {
+    //   jumpDir = 0.01;
+    // }
+    if (bunnyHight.value.y >=2){
+      bunnyHight.value.z =-1.0;
+    }
+    if (bunnyHight.value.y <=0){
+      bunnyHight.value.z = 1.0;
+    }
+    bunnyHight.value.y +=jumpDir*bunnyHight.value.z;
+  }
 
   bunnyMaterial.needsUpdate = true; // Tells three.js that some uniforms might have changed
   eggMaterial.needsUpdate = true;

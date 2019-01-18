@@ -11,7 +11,7 @@ void main() {
         // HINT: USE bunnyPosition HERE
         vec4 eggPos = (modelMatrix * vec4(position, 1.0));
 
-        vec3 eggP = vec3(eggPos);
+        eggP = eggPos.xyz;
 
     // Multiply each vertex by the model matrix to get the world position of each vertex, then the view matrix to get the position in the camera coordinate system, and finally the projection matrix to get final vertex position
     gl_Position = projectionMatrix * viewMatrix * eggPos;
